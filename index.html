@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naufal90 | Minecraft Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" ntegrity="sha512-G2ipR4zMtVdWZzV2U0D6Stqp/5hV1TzWW3RaZptFyzm5Dw+2rxyvdcVZyQgZpHtU4snOHzUSZSpWR29BKZ+J2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <script src="https://kit.fontawesome.com/a2e0e6f56b.js" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg-color: #0d1117;
+      --card-bg: #161b22;
+      --text-color: #c9d1d9;
+      --accent-color: #58a6ff;
+      --muted-color: #8b949e;
+    }
+    [data-theme="light"] {
+      --bg-color: #f5f5f5;
+      --card-bg: #ffffff;
+      --text-color: #1f2328;
+      --accent-color: #0366d6;
+      --muted-color: #57606a;
+    }
+    body {
+      margin: 0;
+      font-family: 'JetBrains Mono', monospace;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      animation: fadeIn 1s ease;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    header {
+      padding: 3rem 1rem;
+      text-align: center;
+      background: linear-gradient(120deg, var(--bg-color), var(--card-bg));
+      animation: slideDown 0.8s ease;
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+    }
+    .typewriter span {
+      border-right: 2px solid var(--accent-color);
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      animation: typing 4s steps(12, end) infinite, blink 0.75s step-end infinite;
+    }
+    @keyframes typing {
+      0% { width: 0; }
+      50% { width: 12ch; }
+      75% { width: 12ch; }
+      100% { width: 0; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    header p {
+      font-size: 1.2rem;
+      color: var(--muted-color);
+    }
+    .section {
+      padding: 2rem 1rem;
+      text-align:center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .section h2 {
+      color: var(--accent-color);
+      border-bottom: 1px solid #30363d;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .tech-list span {
+      display: inline-block;
+      background: #21262d;
+      color: var(--accent-color);
+      margin: 0.3rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: var(--card-bg);
+      text-align: center;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1rem;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-color);
+      box-shadow: 0 0 10px var(--accent-color);
+    }
+    .card img {
+       max-width: 128px;
+       max-height: 128px;
+       object-fit: contain;
+       margin-bottom: 0.5rem;
+    }
+    .card h3 {
+      margin-top: 0;
+      color: var(--text-color);
+    }
+    .card p {
+      color: var(--muted-color);
+    }
+    .card a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .stat-box {
+      background: var(--card-bg);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      border: 1px solid #30363d;
+      text-align: center;
+      flex: 1;
+      min-width: 150px;
+    }
+    .stat-box h3 {
+      color: var(--accent-color);
+      margin: 0.5rem 0;
+    }
+    footer {
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    .social-icons a {
+      margin: 0 0.5rem;
+      color: var(--muted-color);
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: var(--accent-color);
+    }
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--accent-color);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    /* Status text */
+    #naufal-ai-status {
+  font-weight: bold;
+  font-family: 'Segoe UI', 'Orbitron', sans-serif; /* Futuristic font */
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.5s ease;
+  background-color: rgba(0, 0, 0, 0.2); /* Dark background for neon contrast */
+}
+
+.status-online {
+  color: #00ff88;
+  text-shadow: 
+    0 0 5px #00ff88,
+    0 0 10px #00ff88,
+    0 0 20px #00ff88;
+  animation: neon-pulse-online 2s infinite alternate;
+}
+
+.status-offline {
+  color: #ff5555;
+  text-shadow: 
+    0 0 5px #ff5555,
+    0 0 10px #ff5555,
+    0 0 20px #ff5555;
+  animation: neon-pulse-offline 1.5s infinite alternate;
+}
+
+.status-loading {
+  color: #cccccc;
+  font-style: italic;
+}
+
+@keyframes neon-pulse-online {
+  from {
+    text-shadow: 
+      0 0 5px #00ff88,
+      0 0 10px #00ff88,
+      0 0 20px #00ff88;
+  }
+  to {
+    text-shadow: 
+      0 0 10px #00ff88,
+      0 0 20px #00ff88,
+      0 0 30px #00ff88;
+  }
+}
+
+@keyframes neon-pulse-offline {
+  from {
+    text-shadow: 
+      0 0 5px #ff5555,
+      0 0 10px #ff5555,
+      0 0 20px #ff5555;
+  }
+  to {
+    text-shadow: 
+      0 0 10px #ff5555,
+      0 0 20px #ff5555,
+      0 0 30px #ff5555;
+  }
+}
+  </style>
+</head>
+<body>
+  <!--button class="theme-toggle" onclick="toggleTheme()"--><!--i class="fas fa-adjust"><!--/i></button-->
+  <header>
+    <h1 class="typewriter"><span>Naufal90</span></h1>
+    <p>Plugin PaperMC & Mod Fabric Developer</p>
+  </header>  <section class="section">
+    <h2>Tentang Saya</h2>
+    <p>Saya adalah seorang developer Minecraft yang fokus pada pengembangan plugin untuk PaperMC dan mod untuk Fabric. Dengan pengalaman dalam Java, Kotlin, dan tools seperti Gradle dan Git, saya membangun solusi yang efisien, stabil, dan mudah digunakan oleh komunitas server Minecraft.</p>
+    <div class="tech-list">
+      <span>Java</span>
+      <span>Kotlin</span>
+      <span>Gradle</span>
+      <span>PaperMC</span>
+      <span>Fabric</span>
+      <span>Git</span>
+    </div>
+  </section>  <section class="section">
+    <h2>Proyek Unggulan</h2>
+    <div class="projects">
+      <div class="card">
+        <img src="https://raw.githubusercontent.com/Naufal90/LocalHostPlus/a4c0c26ce6d6096f4b51ef2e15834840dd998030/.github/workflows/assets/logo.png" alt="LocalHostPlus Icon" />
+        <h3>LocalHostPlus</h3>
+        <p>Mod Fabric untuk membuat Mengubah dunia Minecraft Java menjadi server hotspot lokal</p>
+        <div class="tech-list">
+          <span>FabricMC</span>
+          <span>Java</span>
+        </div>
+        <p><a href="https://github.com/Naufal90/LocalHostPlus" target="_blank"><i class="fab fa-github"></i> Lihat di GitHub</a></p>
+      </div>
+      <div class="card">
+        <img src="https://raw.githubusercontent.com/Naufal90/TeleChatSRV/24523901b6d070bd60e3afba248ba9b7874add94/.github/assets/logo.PNG" alt="TeleChatSRV Icon" />
+        <h3>TeleChatSRV</h3>
+        <p>Integrasi Telegram dengan plugin ChatSRV berbasis PaperMC, memungkinkan relay pesan antara server Minecraft dan Telegram.</p>
+        <div class="tech-list">
+          <span>PaperMC</span>
+          <span>Java</span>
+        </div>
+        <p><a href="https://github.com/Naufal90/TeleChatSRV" target="_blank"><i class="fab fa-github"></i> Lihat di GitHub</a></p>
+      </div>
+      <div class="card" id="naufal-ai-card">
+  <img src="https://raw.githubusercontent.com/Naufal90/N90-AI/95425d2011040d624eed1b6dfa8daa7e43465101/assets/logo.png" alt="AI Website Icon" />
+  <h3>NaufalAI</h3>
+  <p>Platform AI buatan saya yang menyediakan berbagai model AI siap pakai seperti ChatBot, Text Generator, dan lainnya. Penggunaan gratis hingga 5 pertanyaan tanpa login — login untuk akses penuh!</p>
+  <div class="tech-list">
+    <span>Node.js</span>
+    <span>OpenAI</span>
+    <span>Express</span>
+  </div>
+  <p><strong>Slogan:</strong> "Gunakan gratis, tanpa batas!"</p>
+  <p>Status: <span id="naufal-ai-status" class="status-loading">Memuat...</span></p>
+  <p><a href="https://ai.naufal90.my.id" target="_blank"><i class="fas fa-globe"></i> Kunjungi Website</a></p>
+</div>
+    </div>
+  </section>  <section class="section">
+    <h2>Statistik GitHub</h2>
+    <div class="stats" id="github-stats">
+      <div class="stat-box">
+        <h3 id="repo-count">...</h3>
+        <p>Repositori</p>
+      </div>
+      <div class="stat-box">
+        <h3 id="stars">...</h3>
+        <p>Stars</p>
+      </div>
+      <div class="stat-box">
+        <h3>50+</h3>
+        <p>Pengguna Plugin/Mod</p>
+      </div>
+    </div>
+  </section>  <footer>
+    <h2>Kontak & Media Sosial</h2>
+    <div class="social-icons">
+      <a href="https://github.com/Naufal90" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://discord.com/users/malaziq50" target="_blank"><i class="fab fa-discord"></i></a>
+      <!--a href="https://linkedin.com/in/yourLinkedIn" target="_blank"><!--i class="fab fa-linkedin"><!--/i></a-->
+      <a href="contacts/"><i class="fas fa-envelope"></i></a>
+    </div>
+  </footer>
+  <footer>
+        <div class="container">
+            <p>© 2023 Naufal90 | Minecraft Plugin & Mod Developer</p>
+            <p>Dibangun dengan ❤️ dan ☕</p>
+        </div>
+    </footer>
+  <script>
+    async function fetchGitHubStats() {
+      try {
+        const res = await fetch("https://api.github.com/users/Naufal90/repos");
+        const repos = await res.json();
+        const repoCount = repos.length;
+        let stars = 0;
+        repos.forEach(repo => { stars += repo.stargazers_count || 0 });
+
+        document.getElementById("repo-count").textContent = `${repoCount}+`;
+        document.getElementById("stars").textContent = `${stars}+`;
+      } catch (err) {
+        console.error("Gagal mengambil data GitHub", err);
+      }
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute("data-theme");
+      html.setAttribute("data-theme", current === "light" ? "dark" : "light");
+    }
+
+    document.documentElement.setAttribute("data-theme", "dark");
+
+    fetchGitHubStats();
+    
+    async function checkNaufalAIStatus() {
+  const statusSpan = document.getElementById("naufal-ai-status");
+
+  // Reset all classes first
+  statusSpan.className = "";
+
+  try {
+    const res = await fetch("https://status.naufal90.my.id/status", { 
+      cache: "no-store",
+      headers: {
+        'Cache-Control': 'no-cache'
+      }
+    });
+    
+    if (res.ok) {
+      statusSpan.textContent = "ONLINE";
+      statusSpan.classList.add("status-online");
+      
+      // Add futuristic sound effect (optional)
+      if (typeof Audio !== 'undefined') {
+        new Audio('https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3').play();
+      }
+    } else {
+      statusSpan.textContent = "OFFLINE";
+      statusSpan.classList.add("status-offline");
+    }
+  } catch (e) {
+    statusSpan.textContent = "OFFLINE";
+    statusSpan.classList.add("status-offline");
+  }
+}
+
+// Check status every 30 seconds
+checkNaufalAIStatus();
+setInterval(checkNaufalAIStatus, 30000);
+  </script></body>
+</html>
